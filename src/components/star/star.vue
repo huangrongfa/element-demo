@@ -27,7 +27,7 @@ export default {
       let score = Math.floor(this.score * 2) / 2
       let onff = score % 1 !== 0
       let intet = Math.floor(score)
-      for (let i = 0; i < intet.length; i++) {
+      for (let i = 0; i < intet; i++) {
         result.push(on)
       }
       if (onff) {

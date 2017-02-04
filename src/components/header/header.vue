@@ -209,7 +209,7 @@ export default {
 	bottom: 0;
 	left: 0;
 	background: rgba(7,17,27,.8);
-	z-index: 1;
+	z-index: 4;
 	overflow: auto;
 	font-family: "微软雅黑"
 }
