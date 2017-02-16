@@ -1,6 +1,6 @@
 <template>
   <div>
-      <div class="">我是上交</div>
+      <div class="pinlun">我是评论我是评论我是评论我是评论</div>
   </div>
 </template>
 
@@ -9,4 +9,5 @@ export default {}
 </script>
 
 <style>
+.pinlun{ font-size: 0.5973rem; }
 </style>

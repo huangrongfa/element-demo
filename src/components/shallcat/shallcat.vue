@@ -1,13 +1,30 @@
 <template>
-	<div class="shall">
-		<ul>
-			<li><span></span>￥{{toparive}}</li>
-			<li>另需配送费￥{{deliveryPrice}}元</li>
-			<li :class="playclass">{{payDese}}</li>
+	<section>
+		<div class="shall">
+			<ul>
+				<li><span></span>￥{{toparive}}</li>
+				<li>另需配送费￥{{deliveryPrice}}元</li>
+				<li :class="playclass">{{payDese}}</li>
+			</ul>
+		</div>
+<!-- 		<div class="shop_list">
+	<div class="head">购物车<span class="clear">清空</span></div>
+	<div class="container">
+		<ul class="list">
+			<li class="food" v-for="food in selectfoods">
+			  <span class="names">{{food.name}}</span>
+			  <div class="price"><span>￥{{food.price*food.count}}</span></div>
+			<div class="control_waper">
+			  <controll :food="food"></controll>
+			</div>
+			</li>        
 		</ul>
 	</div>
+</div> -->
+	</section>
 </template>
 <script>
+// import controll from 'components/controll/controll'
 export default {
   props: {
     selectFood: {
@@ -16,7 +33,7 @@ export default {
         return [
           {
             price: 10,
-            count: 10
+            count: 1
           }
         ]
       }
@@ -30,6 +47,7 @@ export default {
       default: 0
     }
   },
+  components: {},
   computed: {
     toparive () {
       let total = 0
@@ -62,6 +80,14 @@ export default {
         return 'bg'
       }
     }
+    // listshow () {
+    //   if (!this.totalCount) {
+    //     this.fold = true
+    //     return false
+    //   }
+    //   let show = !this.fold
+    //   return show
+    // }
   }
 }
 </script>
@@ -121,4 +147,9 @@ export default {
 		text-align: center;
 	}
 	.bg{ background: green !important; color: #fff; }
+	.shop_list{ background: #fff; position: absolute; bottom: 2.048rem; left: 0; width: 100%; min-height: 10.9866rem; }
+	.shop_list .head{ height: 1.7066rem; background: #f3f5f7; border-bottom: solid 1px rgba(7,17,27,0.1); font-size: 0.5973rem; line-height:1.7066rem; padding-left: 0.768rem;padding-right: 0.768rem; font-family: "微软雅黑";}
+	.clear{ float:right; color: #00a0dc; }
+	.list{ margin-left: 0.8106rem;margin-right: 0.8106rem; }
+	.list li{ border-bottom: solid 1px rgba(7,17,27,.1); height: 2.048rem; line-height: 2.048rem; }
 </style>

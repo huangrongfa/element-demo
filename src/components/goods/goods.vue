@@ -21,7 +21,7 @@
       			</dl>
       		</div>
       	</div>
-      	<shallcat :ps-price="seller.deliveryPrice" :min-price="seller.minPrice"></shallcat>
+      	<shallcat :select-foods="selectFoods" :ps-price="seller.deliveryPrice" :min-price="seller.minPrice"></shallcat>
       	<food :food="selectedFood" ref="food"></food>
       </div>
 </template>
@@ -56,12 +56,23 @@ export default {
         }
       }
       return 0
+    },
+    selectFoods () {
+      let foods = []
+      this.goods.forEach((good) => {
+        good.foods.forEach((food) => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   components: {
     shallcat,
-    food,
-    controll
+    controll,
+    food
   },
   created () {
     this.classmap = ['bg1', 'bg2', 'bg3', 'bg4', 'bg5']
@@ -131,9 +142,8 @@ export default {
 .good_right_menu{width:100%;box-sizing: border-box; padding-right: 0.786rem;max-height: 18.9866rem; overflow: hidden;}
 .good_right_menu dl{ overflow: hidden; font-family: "微软雅黑";}
 .good_right_menu dd{ font-size: 0.5973rem;color: rgb(7,17,27);position: relative;border-bottom: solid 1px rgba(7,17,27,.1);padding-bottom:0.786rem ;margin-bottom:0.786rem ; overflow: hidden; cursor:default; }
-.good_right_menu dd span{ display: block;margin-bottom: 0.3413rem; font-size: 0.4266rem; }
-.good_right_menu dd span:nth-of-type(2),.good_right_menu dd span:nth-of-type(3),
-.good_right_menu dd span:nth-of-type(4){color: rgb(147,153,159);}
+.good_right_menu dd span{ display: block;margin-bottom: 0.3413rem; font-size: 0.4266rem;margin-left: 3.6266rem; }
+.good_right_menu dd span:nth-of-type(2),.good_right_menu dd span:nth-of-type(3){color: rgb(147,153,159);}
 .good_right_menu dd span:nth-of-type(4){margin-bottom:0;color: red;font-weight: bold;}
 .info_food img{ float: left; margin-right: 0.4266rem;width:2.432rem; height:2.432rem;border-radius: 4px; margin-left: 0.786rem;  }
 .scrollClass{ background: #fff !important; font-weight: 700; margin-top: -1px;}

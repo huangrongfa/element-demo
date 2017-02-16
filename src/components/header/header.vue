@@ -17,6 +17,7 @@
 	      		<img :src="seller.avatar" alt="" width="100%" height="100%">
 	      	</div>
 	      	<!-- 弹窗 -->
+	      	<transition name="fadeIn"></transition>
 	      	<div class="modal" v-show="modalShow">
 	      		<div class="main">
 					<h1>{{seller.name}}</h1>
@@ -173,25 +174,12 @@ export default {
 	margin-right: 8px;
 }
 .good_left_menu .icon{ margin-right: 4px; vertical-align: text-bottom; }
-.content_top_info .jian.bg1,
-.info_top .info_items .bg1,
-.good_left_menu li .bg1{
-	background:url(../../components/header/decrease_1@2x.png) no-repeat;background-size: cover;}
-.content_top_info .jian.bg2,
-.info_top .info_items .bg2,
-.good_left_menu li .bg2{
-	background:url(../../components/header/discount_1@2x.png) no-repeat;background-size: cover;}
-.content_top_info .jian.bg3,
-.info_top .info_items .bg3,
-.good_left_menu li .bg3{
-	background:url(../../components/header/guarantee_1@2x.png) no-repeat;background-size: cover;}
-.content_top_info .jian.bg4,
-.info_top .info_items .bg4,
-.good_left_menu li .bg4{
+.content_top_info .jian.bg1,.info_top .info_items .bg1,.good_left_menu li .bg1{background:url(../../components/header/decrease_1@2x.png) no-repeat;background-size: cover;}
+.content_top_info .jian.bg2,.info_top .info_items .bg2,.good_left_menu li .bg2{background:url(../../components/header/discount_1@2x.png) no-repeat;background-size: cover;}
+.content_top_info .jian.bg3,.info_top .info_items .bg3,.good_left_menu li .bg3{background:url(../../components/header/guarantee_1@2x.png) no-repeat;background-size: cover;}
+.content_top_info .jian.bg4,.info_top .info_items .bg4,.good_left_menu li .bg4{
 	background:url(../../components/header/invoice_1@2x.png) no-repeat;background-size: cover;}
-.content_top_info .jian.bg5,
-.info_top .info_items .bg5,
-.good_left_menu li .bg5{
+.content_top_info .jian.bg5,.info_top .info_items .bg5,.good_left_menu li .bg5{
 	background:url(../../components/header/special_1@2x.png) no-repeat;background-size: cover;}
 .warp_bg{ 
 	position: absolute; 
@@ -202,17 +190,7 @@ export default {
 	z-index: -1;
 	filter: blur(8px);
 }
-.modal{
-	position:fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background: rgba(7,17,27,.8);
-	z-index: 4;
-	overflow: auto;
-	font-family: "微软雅黑"
-}
+.modal{position:fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(7,17,27,.8);backdrop-filter:blur(10px);z-index: 4;overflow: auto;font-family: "微软雅黑";}
 .footer{
 	text-align: center;
 	font-size: 1.28rem;
@@ -228,24 +206,11 @@ export default {
 	text-align: center;
 	box-sizing: border-box;
 }
-.main h1{
-	font-size: 0.6826rem;
-	font-weight: 700;
-	margin-bottom: 0.6826rem;
-}
-.warp_info{
-	padding-left: 1.536rem;
-	padding-right: 1.536rem;
-}
+.main h1{font-size: 0.6826rem;font-weight: 700;margin-bottom: 0.6826rem;}
+.warp_info{padding-left: 1.536rem;padding-right: 1.536rem;}
 .info_top{margin-bottom:1.1946rem ;}
-.info_top h2,.info_bottom h2{
-	font-size: 0.5973rem;
-	position: relative;
-	font-weight: 700;
-}
-.info_top > h2{
-	margin-bottom: 1.024rem;
-}
+.info_top h2,.info_bottom h2{font-size: 0.5973rem;position: relative;font-weight: 700;}
+.info_top > h2{margin-bottom: 1.024rem;}
 .info_top h2:after,.info_top h2:before,.info_bottom h2:after,.info_bottom h2:before{
 	content: "";
 	position: absolute;
@@ -264,12 +229,5 @@ export default {
 	text-align: left;
 	margin-top: 1.024rem;
 }
-.info_items span:first-child{
-	display: inline-block;
-	width:20px;
-	height: 20px;
-	background: red;
-	vertical-align: middle;
-	margin-right: 12px;
-}
+.info_items span:first-child{display: inline-block;width:20px;height: 20px;background: red;vertical-align: middle;margin-right: 12px;}
 </style>
