@@ -2,7 +2,7 @@
       <div class="goods">
       	<div class="good_left_menu" ref="menuWarper">
       		<ul>
-      			<li v-for="(items,index) in goods" :class="{'scrollClass':currentIndex===index}" @click="selectmenu(index,$event)">
+      			<li v-for="(items, index) in goods" :class="{'scrollClass':currentIndex===index}" @click="selectmenu(index, $event)">
       			<span v-show="items.type>0" class="icon" :class="classmap[items.type]"></span>{{items.name}}</li>
       		</ul>
       	</div>
@@ -10,7 +10,7 @@
       		<div>
       			<dl v-for="item in goods" class="food_list">
 	      			<dt class="title">{{item.name}}</dt>
-	      			<dd v-for="food in item.foods" class="info_food" @click="selectfood(food,$event)">
+	      			<dd v-for="food in item.foods" class="info_food" @click="detail(food,$event)">
 	      				<img :src="food.icon" alt="">
 		      			<span>{{food.name}}</span>
 		      			<span>{{food.description}}</span>
@@ -21,7 +21,9 @@
       			</dl>
       		</div>
       	</div>
-      	<shallcat :select-foods="selectFoods" :ps-price="seller.deliveryPrice" :min-price="seller.minPrice"></shallcat>
+        <!-- 购物车组件 -->
+      	<shallcat :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice" :select-food="selectFoods"></shallcat>
+        <!-- 详情组件 -->
       	<food :food="selectedFood" ref="food"></food>
       </div>
 </template>
@@ -30,8 +32,9 @@ import BScroll from 'better-scroll'
 import shallcat from 'components/shallcat/shallcat'
 import food from 'components/food/food'
 import controll from 'components/controll/controll'
-
+// import Vue from 'vue'
 const isok = 0
+// const eventHub = new Vue()
 export default {
   props: {
     seller: {
@@ -119,7 +122,7 @@ export default {
       let els = oheight[index]
       this.foodscroll.scrollToElement(els, 2000)
     },
-    selectfood (food, event) {
+    detail (food, event) {
       if (!event._constructed) {
         return
       }
@@ -139,12 +142,13 @@ export default {
 .good_left_menu li:after{left: 0;}
 .good_left_menu li:before{right: 0;}
 .good_right_menu .food_list .title{ color: #969ba1; height: 1.1093rem;line-height: 1.1093rem; background: #f4f5f7; font-size: 0.512rem; text-indent: 0.5973rem; margin-bottom: 0.768rem;}
-.good_right_menu{width:100%;box-sizing: border-box; padding-right: 0.786rem;max-height: 18.9866rem; overflow: hidden;}
+.good_right_menu{width:100%;box-sizing: border-box;max-height: 18.9866rem; overflow: hidden;}
 .good_right_menu dl{ overflow: hidden; font-family: "微软雅黑";}
 .good_right_menu dd{ font-size: 0.5973rem;color: rgb(7,17,27);position: relative;border-bottom: solid 1px rgba(7,17,27,.1);padding-bottom:0.786rem ;margin-bottom:0.786rem ; overflow: hidden; cursor:default; }
 .good_right_menu dd span{ display: block;margin-bottom: 0.3413rem; font-size: 0.4266rem;margin-left: 3.6266rem; }
 .good_right_menu dd span:nth-of-type(2),.good_right_menu dd span:nth-of-type(3){color: rgb(147,153,159);}
 .good_right_menu dd span:nth-of-type(4){margin-bottom:0;color: red;font-weight: bold;}
+.food_list:last-child .info_food:last-child{ margin-bottom: 0; }
 .info_food img{ float: left; margin-right: 0.4266rem;width:2.432rem; height:2.432rem;border-radius: 4px; margin-left: 0.786rem;  }
 .scrollClass{ background: #fff !important; font-weight: 700; margin-top: -1px;}
 </style>

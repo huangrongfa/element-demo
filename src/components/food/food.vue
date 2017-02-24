@@ -24,15 +24,18 @@
 				<!-- 评价列表 -->
 				<div class="rating_warp">
 					<ul v-show="food.ratings && food.ratings.length">
-						<li v-for="rating in food.ratings" v-show="nedShow(rating.rataType,rating.text)">
-							<div class="times">
-								<span>{{rating.rateTime | setDate(times)}}</span>
-								<div class="proseon"><span>{{rating.username}}</span><img :src="rating.avatar" alt="" width="12" height="12"></div>
+						<li v-for="rating in food.ratings" v-show="nedShow(rating.rateType,rating.text)">
+							<div class="set_times">
+								<span>{{rating.rateTime | setDate }}</span>
+								<div class="proseon">
+									<span>{{rating.username}}</span>
+									<img :src="rating.avatar" alt="" width="14" height="14">
+								</div>
 							</div>
 							<div class="list_text">{{rating.text}}</div>
 						</li>
 					</ul>
-					<!-- <div class="no_rating" v-show="!food.ratings || food.ratings.length">暂无评价</div> -->
+					<div class="no_rating" v-show="!food.rating || food.rating.length">暂无评价</div>
 				</div>
 			</div>
 		</div>
@@ -41,9 +44,7 @@
 <script>
 import BScroll from 'better-scroll'
 import ratingselect from 'components/ratingselect/ratingselect'
-// import {setDate} from 'common/data.js'
-// const positive = 0
-// const negative = 1
+import {setDate} from '../../common/js/date'
 const all = 2
 export default {
   props: {
@@ -66,13 +67,12 @@ export default {
   components: {
     ratingselect
   },
- //  filter: {
- //  setDate (time) {
- // let date = new Date(time)
-// return setDate(date,'yyyy-mm-dd hh:mm')
-
- //    }
- //  },
+  filters: {
+    setDate (times) {
+      let date = new Date(times)
+      return setDate(date, 'yyyy-MM-dd hh:mm')
+    }
+  },
   methods: {
     slideShow () {
       this.isshow = true
@@ -84,7 +84,7 @@ export default {
             click: true
           })
         } else {
-          this.scroll.refresf()
+          this.scroll.refresh()
         }
       })
     },
@@ -105,12 +105,13 @@ export default {
       'ratingtype.tabs' (type) {
         this.selectType = type
         this.$nextTick(() => {
-          this.scroll.refresf()
+          this.scroll.refresh()
         })
       },
       'content.toggle' (onlyContent) {
+        this.onlyContent = onlyContent
         this.$nextTick(() => {
-          this.onlyContent = onlyContent
+          this.scroll.refresh()
         })
       }
     }
@@ -137,9 +138,10 @@ export default {
 	.rating h2,.foods_jieshao h2{ font-family: "微软雅黑";margin-bottom: 0.768rem; }
 	.rating_warp{ padding-left: 0.768rem;padding-right: 0.768rem; font-family: "微软雅黑" }
 	.rating_warp li{ border-bottom: solid 1px rgba(7,17,27,.1);padding-bottom: 0.6826rem; }
-	.times{ overflow: hidden; }
-	.times span{ font-size: 0.4266rem; display: inline-block;margin-bottom: 0.256rem; color: #93999f; }
-	.times .proseon{ float: right; }
+	.set_times{ overflow: hidden; }
+	.set_times span{ font-size: 0.4266rem; display: inline-block;margin-bottom: 0.256rem; color: #93999f; }
+	.set_times .proseon{ float: right; }
 	.proseon span{ margin-right: 15px; }
 	.list_text{ font-size: 0.512rem;  }
+	.rating_warp .no_rating{ text-align: center; padding: 20px 0; font-size: 0.512rem; font-weight: 600;} 
 </style>

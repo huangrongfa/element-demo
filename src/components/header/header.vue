@@ -11,13 +11,13 @@
 	      		</div>
 	      	</div>
 	      	<div class="content_botm">
-	      		<span></span><span>春节前夕李克强昆明看望西南联大“老学长”</span>
+	      		<span></span><span>{{seller.bulletin}}</span>
 	      	</div>
 	      	<div class="warp_bg">
 	      		<img :src="seller.avatar" alt="" width="100%" height="100%">
 	      	</div>
 	      	<!-- 弹窗 -->
-	      	<transition name="fadeIn"></transition>
+	      	<transition name="fade">
 	      	<div class="modal" v-show="modalShow">
 	      		<div class="main">
 					<h1>{{seller.name}}</h1>
@@ -40,6 +40,7 @@
 	      		</div>
 	      		<div class="footer" @click="hide">X</div>
 	      	</div>
+	      	</transition>
       </div>
 </template>
 
@@ -156,7 +157,15 @@ export default {
 	font-weight: bold;
 	vertical-align: middle;
 }
-.content_botm span:last-child{font-size: 0.4266rem;vertical-align: middle;}
+.content_botm span:last-child{
+	font-size: 0.4266rem;
+	vertical-align: middle;
+	display: inline-block;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 310px;
+}
 .content_top_info .pp{
 	display: inline-block;
 	height: 0.768rem;
@@ -190,7 +199,7 @@ export default {
 	z-index: -1;
 	filter: blur(8px);
 }
-.modal{position:fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(7,17,27,.8);backdrop-filter:blur(10px);z-index: 4;overflow: auto;font-family: "微软雅黑";}
+.modal{position:fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(7,17,27,.8);backdrop-filter:blur(10px);z-index: 100;overflow: auto;font-family: "微软雅黑";}
 .footer{
 	text-align: center;
 	font-size: 1.28rem;
@@ -230,4 +239,6 @@ export default {
 	margin-top: 1.024rem;
 }
 .info_items span:first-child{display: inline-block;width:20px;height: 20px;background: red;vertical-align: middle;margin-right: 12px;}
+.fade-enter-active,.fade-leave-active{ transition: opacity .3s; }
+.fade-enter,.fade-leave-active{opacity: 0;}
 </style>
