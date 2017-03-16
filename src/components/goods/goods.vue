@@ -1,10 +1,12 @@
 <template>
       <div class="goods">
       	<div class="good_left_menu" ref="menuWarper">
-      		<ul>
-      			<li v-for="(items, index) in goods" :class="{'scrollClass':currentIndex===index}" @click="selectmenu(index, $event)">
-      			<span v-show="items.type>0" class="icon" :class="classmap[items.type]"></span>{{items.name}}</li>
-      		</ul>
+            <div class="scroll_ul">
+            <ul>
+              <li v-for="(items, index) in goods" :class="{'scrollClass':currentIndex===index}" @click="selectmenu(index, $event)">
+              <span v-show="items.type>0" class="icon" :class="classmap[items.type]"></span>{{items.name}}</li>
+            </ul>
+            </div>
       	</div>
       	<div class="good_right_menu" ref="foodWarper">
       		<div>
@@ -134,8 +136,9 @@ export default {
 </script>
 	
 <style>
-.goods{display: flex;overflow: hidden;}
-.good_left_menu{flex: 1;max-height: 18.9866rem;}
+.goods{display: flex;/*overflow: hidden;*/}
+/*.good_left_menu{flex: 1;}*/
+.good_left_menu  ul{ min-height: 100%; }
 .good_left_menu li{width:3.4133rem;height: 2rem;line-height: 2rem;text-align: center;background:#f3f5f7;border-bottom:solid 1px rgba(7,17,27,.2);font-size: 0.512rem;color: #07111b;position: relative;}
 .good_left_menu li:last-child{border-bottom:none}
 .good_left_menu li:after,.good_left_menu li:before{content: "";display: block;position: absolute;bottom: -1px;background: #f3f5f7;height: 1px;width:0.512rem;}
@@ -150,5 +153,5 @@ export default {
 .good_right_menu dd span:nth-of-type(4){margin-bottom:0;color: red;font-weight: bold;}
 .food_list:last-child .info_food:last-child{ margin-bottom: 0; }
 .info_food img{ float: left; margin-right: 0.4266rem;width:2.432rem; height:2.432rem;border-radius: 4px; margin-left: 0.786rem;  }
-.scrollClass{ background: #fff !important; font-weight: 700; margin-top: -1px;}
+.scrollClass{ background: #fff !important; font-weight: 700; margin-top: -1px; border-left: solid 2px #2196F3}
 </style>

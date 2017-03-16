@@ -1,17 +1,17 @@
 <template>
 	<div class="rating_select">
-		<ul class="rating_type">
-			<li class="li_active positive" :class="{'active':selectType===2}" @click="tabs(2,$event)">{{desc.all}}<span>{{ratings.length}}</span></li>
-			<li class="li_active positive" :class="{'active':selectType===0}" @click="tabs(0,$event)">{{desc.positive}}<span>{{positive.length}}</span></li>
-			<li class="li_active negative" :class="{'active':selectType===1}" @click="tabs(1,$event)">{{desc.negative}}<span>{{negative.length}}</span></li>
-		</ul>
-		<div class="look" :class="{'on':onlyContent}" @click="toggle($event)">只看有内容的评价</div>
+      <ul class="rating_type">
+        <li class="li_active positive" @click="select(2,$event)" :class="{'active':selectType === 2}">{{desc.all}}<span>{{ratings.length}}</span></li>
+        <li class="li_active positive" @click="select(0,$event)" :class="{'active':selectType === 0}">{{desc.positive }}<span>{{positives.length}}</span></li>
+        <li class="li_active negative" @click="select(1,$event)" :class="{'active':selectType === 1}">{{desc.negative}}<span>{{negatives.length}}</span></li>
+      </ul>
+  		<div class="look" :class="{'on':onlyContent}" @click="toggleContent($event)">只看有内容的评价</div>
 	</div>
 </template>
 <script>
-const positive = 0
-const negative = 1
+const positive = 1
 const all = 2
+const negative = 0
 export default {
   props: {
     ratings: {
@@ -40,31 +40,29 @@ export default {
     }
   },
   computed: {
-    positive () {
+    positives () {
       return this.ratings.filter((rating) => {
         return rating.rateType === positive
       })
     },
-    negative () {
+    negatives () {
       return this.ratings.filter((rating) => {
         return rating.rateType === negative
       })
     }
   },
   methods: {
-    tabs (type, event) {
+    select (type, event) {
       if (!event._constructed) {
         return
       }
       this.selectType = type
-      this.$root.eventHub.$emit('ratingtype.tabs', type)
     },
-    toggle (event) {
+    toggleContent (event) {
       if (!event._constructed) {
         return
       }
       this.onlyContent = !this.onlyContent
-      this.$root.eventHub.$emit('content.toggle', this.onlyContent)
     }
   }
 }
@@ -76,12 +74,7 @@ export default {
 .rating_type li.negative{ background-color: #ccc; }
 .rating_type li.positive.active{ background-color: #00a0dc; color: #fff; }
 .rating_type li.negative.active{ background-color: #333;color: #fff;}
-.look{ 
-  font-size: 0.512rem; 
-  color: #b7bbbf; 
-  border-top:solid 1px rgba(7,17,27,.1);
-  border-bottom:solid 1px rgba(7,17,27,.1); 
-  padding: 0.512rem 0;
+.look{ font-size: 0.512rem; color: #b7bbbf; border-top:solid 1px rgba(7,17,27,.1);border-bottom:solid 1px rgba(7,17,27,.1); padding: 0.512rem 0;
 }
 .rating_select .on{ font-weight: 700; color: red; }
 </style>

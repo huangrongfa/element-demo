@@ -18,7 +18,7 @@
 				<!-- 商品评价 -->
 				<div class="rating">
 					<h2>商品评价</h2>
-					<ratingselect :select-type="selectType" :only-contaier="onlyContent" :dese="desc" :ratings="food.ratings">
+					<ratingselect :select-type="selectType" :only-content="onlyContent" :desc="desc" :ratings="food.ratings">
 					</ratingselect>
 				</div>
 				<!-- 评价列表 -->
@@ -45,7 +45,9 @@
 import BScroll from 'better-scroll'
 import ratingselect from 'components/ratingselect/ratingselect'
 import {setDate} from '../../common/js/date'
+
 const all = 2
+
 export default {
   props: {
     food: {
@@ -56,11 +58,11 @@ export default {
     return {
       isshow: false,
       selectType: all,
-      onlyContent: true,
+      onlyContent: false,
       desc: {
         all: '全部',
-        positive: '满意',
-        negative: '不满意'
+        positive: '推荐',
+        negative: '吐槽'
       }
     }
   },
@@ -77,7 +79,7 @@ export default {
     slideShow () {
       this.isshow = true
       this.selectType = all
-      this.onlyContent = true
+      this.onlyContent = false
       this.$nextTick(() => {
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.food, {
@@ -99,20 +101,6 @@ export default {
         return true
       } else {
         return type === this.selectType
-      }
-    },
-    events: {
-      'ratingtype.tabs' (type) {
-        this.selectType = type
-        this.$nextTick(() => {
-          this.scroll.refresh()
-        })
-      },
-      'content.toggle' (onlyContent) {
-        this.onlyContent = onlyContent
-        this.$nextTick(() => {
-          this.scroll.refresh()
-        })
       }
     }
   }
