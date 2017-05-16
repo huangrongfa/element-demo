@@ -70,7 +70,6 @@ export default {
   created () {
     this.$http.get('/api/ratings').then((response) => {
       response = response.body
-
       if (response.error === ok) {
         this.ratings = response.data
         this.$nextTick(() => {
@@ -91,7 +90,7 @@ export default {
 <style>
 body{ position: static; }
 .ratings_warp{position: absolute;top:202px;left: 0;bottom: 0;width: 100%;overflow: hidden;z-index: 2}
-.rating_container{/*padding: 0 15px; */ padding-bottom: 0.768rem; margin-top: 0.768rem;}
+.rating_container{padding-bottom: 0.768rem; }
 .rating_box{ display: flex; /*box-shadow: 0 20px 0 #f3f5f7;*/}
 .reating_view_l{flex:0 0 137px;width: 137px;border-right:solid 1px rgba(7,17,27,.3);text-align: center;font-family: "微软雅黑";}
 .reating_view_r{flex:1;padding-left: 24px;}

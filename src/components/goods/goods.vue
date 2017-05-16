@@ -135,7 +135,7 @@ export default {
 }
 </script>
 	
-<style>
+<style scoped>
 .goods{display: flex;/*overflow: hidden;*/}
 /*.good_left_menu{flex: 1;}*/
 .good_left_menu  ul{ min-height: 100%; }

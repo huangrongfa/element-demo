@@ -38,7 +38,7 @@
 						</div>
 					</div>
 	      		</div>
-	      		<div class="footer" @click="hide">X</div>
+	      		<div class="footer" @click="hide"><span></span></div>
 	      	</div>
 	      	</transition>
       </div>
@@ -73,18 +73,14 @@ export default {
   }
 }
 </script>
-<style>
-.clearfix{
-	overflow: hidden;
-}
+<style scoped>
+.clearfix{overflow: hidden;}
 .header{
 	position: relative;
 	background: rgba(7,17,27,.5);
 	overflow: hidden;
 }
-.content_top {
-	padding: 24px 11px;
-}
+.content_top {padding: 24px 11px;}
 .content_top > img{
 	width: 2.7306rem;
 	height: 2.7306rem;
@@ -183,30 +179,26 @@ export default {
 	margin-right: 8px;
 }
 .good_left_menu .icon{ margin-right: 4px; vertical-align: text-bottom; }
-.content_top_info .jian.bg1,.info_top .info_items .bg1,.good_left_menu li .bg1{background:url(../../components/header/decrease_1@2x.png) no-repeat;background-size: cover;}
-.content_top_info .jian.bg2,.info_top .info_items .bg2,.good_left_menu li .bg2{background:url(../../components/header/discount_1@2x.png) no-repeat;background-size: cover;}
+.content_top_info .jian.bg1,
+.info_top .info_items .bg1,
+.good_left_menu li .bg1{background:url(../../components/header/decrease_1@2x.png) no-repeat;background-size: cover;}
+.content_top_info .jian.bg2,
+.info_top .info_items .bg2,.good_left_menu li .bg2{background:url(../../components/header/discount_1@2x.png) no-repeat;background-size: cover;}
 .content_top_info .jian.bg3,.info_top .info_items .bg3,.good_left_menu li .bg3{background:url(../../components/header/guarantee_1@2x.png) no-repeat;background-size: cover;}
 .content_top_info .jian.bg4,.info_top .info_items .bg4,.good_left_menu li .bg4{
 	background:url(../../components/header/invoice_1@2x.png) no-repeat;background-size: cover;}
 .content_top_info .jian.bg5,.info_top .info_items .bg5,.good_left_menu li .bg5{
 	background:url(../../components/header/special_1@2x.png) no-repeat;background-size: cover;}
-.warp_bg{ 
-	position: absolute; 
-	left: 0; 
-	top:0;  
-	height: 100%; 
-	width: 100%; 
-	z-index: -1;
-	filter: blur(8px);
-}
+.warp_bg{ position: absolute; left: 0; top:0;  height: 100%; width: 100%; z-index: -1;filter: blur(8px);}
 .modal{position:fixed;top: 0;right: 0;bottom: 0;left: 0;background: rgba(7,17,27,.8);backdrop-filter:blur(10px);z-index: 100;overflow: auto;font-family: "微软雅黑";}
-.footer{
-	text-align: center;
-	font-size: 1.28rem;
-	color: rgba(255,255,255,.5);
-	height: 2.7306rem;
-	line-height: 2.7306rem;
-	font-weight: 600;
+.footer{text-align: center;height: 2.7306rem;}
+.footer span{
+	display: inline-block;
+	height: 1rem;
+	width: 1rem;
+	background:url(../../components/header/close.png) no-repeat;
+	background-size:cover;
+	background-position: center 0;
 }
 .main{
 	padding-top:2.7306rem; 
